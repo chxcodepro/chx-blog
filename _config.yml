@@ -1,0 +1,203 @@
+# Hexo配置文件
+# 用于配置站点的各种参数以及设置Hexo的运行方式
+# Hexo配置
+## 文档: https://hexo.io/docs/configuration.html
+## 源码: https://github.com/hexojs/hexo/
+
+# 站点配置
+# 这些参数定义了站点的基本信息,如标题、描述和作者
+# 站点
+title: ✨星星之火，可以燎原🔥
+subtitle: ''
+description: ''
+keywords:
+author: 辰海星
+language: zh-CN
+timezone: 'Asia/Shanghai'
+
+# URL配置
+# 这里设置了站点的URL和文章的永久链接格式
+# URL
+## 在这里设置你的站点url。例如,如果你使用GitHub Pages,设置url为'https://username.github.io/project'
+url: https://chxpro.us.kg/
+permalink: :year/:month/:day/:title/
+permalink_defaults:
+pretty_urls:
+  trailing_index: true # 设置为false以移除永久链接末尾的'index.html'
+  trailing_html: true # 设置为false以移除永久链接末尾的'.html'
+
+# 目录配置
+# 这些参数定义了各种内容在站点文件结构中的位置
+# 目录
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render:
+
+# 写作配置
+# 这些参数影响新文章的默认设置和内容处理方式
+# 写作
+new_post_name: :title.md # 新文章的文件名格式
+default_layout: post
+titlecase: false # 是否将标题转换为标题格式
+external_link:
+  enable: true # 是否在新标签页中打开外部链接
+  field: site # 应用到整个站点
+  exclude: ''
+filename_case: 0
+render_drafts: false
+post_asset_folder: false
+relative_link: false
+future: true
+syntax_highlighter: false
+highlight:
+  line_number: false
+  auto_detect: false
+  tab_replace: ''
+  wrap: true
+  hljs: false
+prismjs:
+  preprocess: false
+  line_number: true
+  tab_replace: ''  
+
+# 首页配置
+# 这里设置了首页的显示方式,如每页的文章数量和排序顺序
+# 主页设置
+# path: 博客索引页的根路径(默认为'')
+# per_page: 每页显示的文章数(0 = 禁用分页)
+# order_by: 文章排序方式(默认按日期降序)
+index_generator:
+  path: ''
+  per_page: 10
+  order_by: -date
+
+# 分类与标签配置
+# 这里设置了默认的分类和标签映射
+# 分类 & 标签
+default_category: uncategorized
+category_map:
+tag_map:
+
+# 元数据配置
+# 这里设置了站点的元数据,如生成器信息
+# 元数据元素
+## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
+meta_generator: true
+
+# 日期/时间格式配置
+# 这里设置了日期和时间的显示格式
+# 日期/时间格式
+## Hexo使用Moment.js解析和显示日期
+## 你可以按照以下链接中定义的格式自定义日期格式
+## http://momentjs.com/docs/#/displaying/format/
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
+## updated_option支持'mtime'、'date'、'empty'
+updated_option: 'mtime'
+
+# 分页配置
+# 这里设置了分页的参数,如每页的文章数量
+# 分页
+## 设置per_page为0以禁用分页
+per_page: 10
+pagination_dir: page
+
+# 包含/排除文件配置
+# 这里设置了源目录中要包含或排除的文件
+# 包含/排除文件
+## include/exclude选项仅适用于'source/'文件夹
+include:
+exclude:
+ignore:
+
+# 扩展配置
+# 这里设置了插件和主题等扩展的使用
+# 扩展
+## 插件: https://hexo.io/plugins/
+## 主题: https://hexo.io/themes/
+theme: shokax
+
+# 部署配置
+# 这里设置了将站点部署到目标服务器的参数
+# 部署
+## 文档: https://hexo.io/docs/one-command-deployment
+deploy:
+  type: 'git'
+  repo: 'https://github.com/chxcodepro/chxcodepro.github.io.git'
+  branch: main
+
+
+# Markdown配置
+# 这里设置了Markdown渲染器的参数
+markdown:
+  render: # 渲染器设置
+    html: false # 过滤HTML标签
+    xhtmlOut: true # 使用'/'来闭合单标签(比如<br/>)
+    breaks: true # 转换段落里的'\n'到<br>
+    linkify: true # 将类似URL的文本自动转换为链接
+    typographer:
+    quotes: ""
+  plugins: # markdown-it插件设置
+    - plugin:
+        name: markdown-it-toc-and-anchor
+        enable: true
+        options: # 文章目录以及锚点应用的class名称,shoka系主题必须设置成这样
+          tocClassName: "toc"
+          anchorClassName: "anchor"
+    - plugin:
+        name: markdown-it-multimd-table
+        enable: true
+        options:
+          multiline: true
+          rowspan: true
+          headerless: true
+    - plugin:
+        name: ./markdown-it-furigana
+        enable: true
+        options:
+          fallbackParens: "()"
+    - plugin:
+        name: ./markdown-it-spoiler
+        enable: true
+        options:
+          title: "你知道得太多了"
+
+# Feed配置
+# 这里设置了RSS和其他Feed的相关参数
+feed:
+  limit: 20
+  order_by: "-date"
+  tag_dir: false
+  category_dir: false
+  rss:
+    enable: true
+    template: "node_modules/hexo-theme-shokax/layout/_alternate/rss.ejs"
+    output: "rss.xml"
+  atom:
+    enable: true
+    template: "node_modules/hexo-theme-shokax/layout/_alternate/atom.ejs"
+    output: "atom.xml"
+  jsonFeed:
+    enable: true
+    template: "node_modules/hexo-theme-shokax/layout/_alternate/json.ejs"
+    output: "feed.json"
+
+algolia:
+  appId: "QYR55IHYPJ" #你的应用ID
+  apiKey: "1cf2e2a108d4cc3c5f3cbd561de9099f" #你的API密钥
+  adminApiKey: "484adc6be115782465ffe10008fe853f" #你的管理API密钥
+  chunkSize: 5000
+  indexName: "star_world"
+  fields:
+    - title #必须配置
+    - path #必须配置
+    - categories #推荐配置
+    - content:strip:truncate,0,2000
+    - gallery
+    - photos
+    - tags
